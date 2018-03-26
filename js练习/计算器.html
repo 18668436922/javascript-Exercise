@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>计算器</title>
+	<link rel="stylesheet" type="text/css" href="css/计算器.css">
+</head>
+<body>
+    <div class="center">
+    	<h1>HTML CSS,Javascript 计算器</h1>
+    	<form name="calculator">
+    		<input type="button" id="clear" class="btn other" value='C'>
+    		<input type="text" id="display">
+    		<br>
+    		<input type="button" class="btn number" value='7' onclick="get(this.value);">
+    		<input type="button" class="btn number" value='8' onclick="get(this.value);">
+    		<input type="button" class="btn number" value='9' onclick="get(this.value);">
+    		<input type="button" class="btn operator" value='+' onclick="get(this.value);">
+    		<br>
+    		<input type="button" class="btn number" value='4' onclick="get(this.value);">
+    		<input type="button" class="btn number" value='5' onclick="get(this.value);">
+    		<input type="button" class="btn number" value='6' onclick="get(this.value);">
+    		<input type="button" class="btn operator" value='*' onclick="get(this.value);">
+    		<br>
+    		<input type="button" class="btn number" value='1' onclick="get(this.value);">
+    		<input type="button" class="btn number" value='2' onclick="get(this.value);">
+    		<input type="button" class="btn number" value='3' onclick="get(this.value);">
+    		<input type="button" class="btn operator" value='-' onclick="get(this.value);">
+    		<br>
+    		<input type="button" class="btn number" value='0' onclick="get(this.value);">
+    		<input type="button" class="btn number" value='.' onclick="get(this.value);">
+    		<input type="button" class="btn number" value='/' onclick="get(this.value);">
+    		<input type="button" class="btn operator" value='=' onclick="calculates();">
+    	</form>
+    </div>	
+    <script type="text/javascript" src="js/计算机.js"></script>
+</body>
+</html>
