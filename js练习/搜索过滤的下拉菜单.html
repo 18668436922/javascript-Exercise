@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>可以进行搜索/过滤操作的下拉菜单</title>
+	<link rel="stylesheet" type="text/css" href="css/搜索过滤的下拉菜单.css">
+</head>
+<body>
+	<h2>搜索/过滤</h2>
+	<p>点击按钮显示下拉菜单，输入框可以搜索过滤内容。</p>
+
+	<div class="dropdown">
+		<button onclick="myFunction()" class="dropbtn">下拉菜单</button>
+		<div id="myDropdown" class="dropdown-content">
+			<input type="text" placeholder="搜索..." id="myInput" onkeyup="filterFunction()">
+			<a href="#">About</a>
+			<a href="#">Base</a>
+			<a href="#">Blog</a>
+			<a href="#">Contact</a>
+			<a href="#">Custom</a>
+			<a href="#">Support</a>
+			<a href="#">Tools</a>
+		</div>
+	</div>
+	<script type="text/javascript" src="js/搜索过滤的下拉菜单.js"></script>
+</body>
+</html>
