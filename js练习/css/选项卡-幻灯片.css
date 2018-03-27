@@ -1,0 +1,33 @@
+.tabcontent {
+	display: none;
+	color: white;
+	text-align: center;
+	padding: 50px;
+	margin-bottom: 3px;
+}
+.tablink {
+	padding: 14px 16px;
+	border: none;
+	outline: none;
+	background-color: #555;
+	width: 25%;
+	color: white;
+	float: left;
+	font-size: 17px;
+	cursor: pointer;
+}
+.tablink:hover {
+	background-color: #777;
+}
+#London {
+	background-color: red;
+}
+#Paris {
+	background-color: green;
+}
+#Tokyo {
+	background-color: blue;
+}
+#Oslo {
+	background-color: orange;
+}

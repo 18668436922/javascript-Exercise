@@ -1,0 +1,38 @@
+* {
+	margin:0;
+	padding:0;
+}
+body {
+	width: 100%;
+	text-align: center;
+}
+.alert {
+	width: 300px;
+	background: red;
+	height: 60px;
+	margin: 10px auto;
+	line-height: 60px;
+	color: #fff;
+	position: relative;
+	opacity: 1;
+	transition: opacity 0.6s;
+}
+.closebtn {
+	position: absolute;
+	right: 20px;
+	font-size: 24px;
+	transition: 0.3s;
+}
+.closebtn:hover {
+	color: black;
+	cursor: pointer;
+}
+.success {
+	background: green;
+}
+.info {
+	background: lightblue;
+}
+.warning {
+	background: orange;
+}

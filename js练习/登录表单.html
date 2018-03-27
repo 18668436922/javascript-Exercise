@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>登陆表单</title>
+	<link rel="stylesheet" type="text/css" href="css/登录表单.css">
+</head>
+<body>
+	<h2>登陆表单</h2>
+	<button id="btn1" type="button" style="width: auto" onclick="oPen()">登陆</button>
+	<div id="id01" class="modal">
+		<form class="modal-content animate" action="计算器.html">
+			<div class="imgcontainer">
+				<span class="close" title="Close Modal" onclick="clOse()">&times;</span>
+				<img src="https://static.runoob.com/images/mix/img_avatar.png"
+				alt="Avatar" class="avatar">
+			</div>
+			<div class="container">
+				<label><b>Username</b></label>
+				<br>
+				<input type="text" placeholder="Enter Username" name="uname" required>
+
+				<label><b>Password</b></label>
+				<br>
+				<input type="password" name="psw" placeholder="Enter Password" required>
+
+				<button type="submit" class="login">登陆</button>
+				<input type="checkbox" checked="checked" style="width: auto;"> 记住我
+			</div>
+			<div class="container" style="background-color:#f1f1f1">
+				<button type="button" class="cancelbtn" onclick="clOse()">Cancel</button>
+				<span class="psw">Forget <a href="#">password?</a></span>
+			</div>
+		</form>
+	</div>
+	<script type="text/javascript" src="js/登录表单.js"></script>
+</body>
+</html>

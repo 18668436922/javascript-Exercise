@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>选项卡-幻灯片</title>
+	<link rel="stylesheet" type="text/css" href="css/选项卡-幻灯片.css">
+</head>
+<body>
+	<p>点击各个选项卡切换内容：</p>
+
+	<div id="London" class="tabcontent">
+		<h3>London</h3>
+		<p>London is the capital city of England.</p>
+	</div>
+
+	<div id="Paris" class="tabcontent">
+		<h3>Paris</h3>
+		<p>Paris is the capital city of France.</p>
+	</div>
+
+	<div id="Tokyo" class="tabcontent">
+		<h3>Tokyo</h3>
+		<p>Tokyo is the capital city of Japan.</p>
+	</div>
+
+	<div id="Oslo" class="tabcontent">
+		<h3>Oslo</h3>
+		<p>Oslo is the capital city of Norway.</p>
+	</div>
+	
+	<button class="tablink" onclick="openCity('London',this,'red')" id="defaultOpen">London</button>
+	<button class="tablink" onclick="openCity('Paris',this,'green')">Paris</button>
+	<button class="tablink" onclick="openCity('Tokyo',this,'blue')">Tokyo</button>
+	<button class="tablink" onclick="openCity('Oslo',this,'orange')">Oslo</button>
+	<script type="text/javascript" src="js/选项卡-幻灯片.js"></script>
+</body>
+</html>

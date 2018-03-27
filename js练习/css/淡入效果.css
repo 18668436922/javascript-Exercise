@@ -1,0 +1,65 @@
+/*选项卡样式*/
+div.tab {
+	border: 1px solid #ccc;
+	background-color: #f1f1f1;
+	width: 30%;
+	float: left;
+	height: 300px;
+}
+/*选项卡中按钮的样式*/
+div.tab button {
+	border: none;
+	display: block;
+	background-color: #f1f1f1;
+	font-size: 17px;
+	padding: 22px 16px;
+	cursor: pointer;
+	transition: 0.3s;
+	width: 100%;
+	color: black;
+	text-align:left;
+}
+div.tab button:hover {
+	background-color: #ddd;
+}
+div.tab button.active {
+	background-color: #ccc;
+}
+.tablinks {
+	background-color: #555;
+	color: white;
+	float: left;
+}
+/*选项卡内容的样式*/
+.tabcontent {
+	display: none;
+	padding: 0px 12px;
+	-webkit-animation: fadeEffect 1s;
+	animation:fadeEffect 1s;
+	position: relative;
+	width: 65%;
+	float: left;
+	height: 300px;
+}
+.tabcontent h3 {
+	margin: 0;
+}
+.topright {
+	position: absolute;
+	top: 10px;
+	right: 10px;
+	font-size: 24px;
+	cursor: pointer;
+}
+.topright:hover,
+.topright:focus {
+	color: red;
+}
+@-webkit-keyframes fadeEffect {
+	from{opacity: 0;}
+	to{opacity: 1;}
+}
+@keyframes fadeEffect {
+	from{opacity: 0;}
+	to{opacity: 1;}
+}

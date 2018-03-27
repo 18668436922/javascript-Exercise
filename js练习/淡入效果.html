@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>淡入效果</title>
+	<link rel="stylesheet" type="text/css" href="css/淡入效果.css">
+</head>
+<body>
+	<h3>选项卡-淡入效果</h3>
+	<div class="tab">
+		<button class="tablinks" onclick="openCity(event,'London')" 
+		id="defaultOpen">London</button>
+		<button class="tablinks" onclick="openCity(event,'Paris')">Paris</button>
+		<button class="tablinks" onclick="openCity(event,'Tokyo')">Tokyo</button>
+		<button class="tablinks" onclick="openCity(event,'Oslo')">Oslo</button>
+	</div>
+	<div id="London" class="tabcontent">
+		<span class="topright" onclick="this.parentElement.style.display='none'">&times;</span>
+		<h3>London</h3>
+		<p>London is the capital city of england.</p>
+	</div>
+	<div id="Paris" class="tabcontent">
+		<span class="topright" onclick="this.parentElement.style.display='none'">&times;</span>
+		<h3>Paris</h3>
+		<p>Paris is the capital city of France.</p>
+	</div>
+	<div id="Tokyo" class="tabcontent">
+		<span class="topright" onclick="this.parentElement.style.display='none'">&times;</span>
+		<h3>Tokyo</h3>
+		<p>Tokyo is the capital city of japan.</p>
+	</div>
+	<div id="Oslo" class="tabcontent">
+		<span class="topright" onclick="this.parentElement.style.display='none'">&times;</span>
+		<h3>Oslo</h3>
+		<p>Oslo is the capital of Norway</p>
+	</div>
+	<script type="text/javascript" src="js/淡入效果.js"></script>
+</body>
+</html>
