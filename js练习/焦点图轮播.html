@@ -5,70 +5,62 @@
 	<title>Document</title>
 <style type="text/css">
 * {
-	margin:0;
+	margin: 0;
 	padding: 0;
-	text-decoration: none;
-	list-style: none;
-}
-body {
-	padding:20px;
 }
 #container {
-	width: 400px;
-	height: 250px;
+	width: 600px;
+	height: 350px;
+	margin: 20px auto;
+	position: relative;
 	border: 3px solid #333;
 	overflow: hidden;
-	position: absolute;
 }
 #list {
-	width: 2400px;
-	height: 250px;
+	width: 4000px;
 	position: absolute;
-	z-index: 1;
 }
 #list img {
-	float:left;
-	width: 400px;
-	height: 250px;
+	width: 600px;
+	height: 350px;
+	float: left;
 }
 #button {
 	position: absolute;
+	bottom: 15px;
 	width: 100px;
-	height: 10px;
-	z-index: 2;
-	bottom: 10px;
-	left: 150px;
+	left:250px;
 }
 #button span {
-	cursor: pointer;
-	float: left;
 	width: 10px;
 	height: 10px;
 	border-radius: 50%;
-	background: #fff;
+	background: #ccc;
+	float: left;
 	margin-left: 12px;
+	cursor: pointer;
 }
 #button .on {
-	background: orangered;
+	background:orangered;
 }
 .arrow {
+	position: absolute;
 	cursor: pointer;
-	display: none;
-	line-height: 39px;
-	text-align: center;
-	font-size: 36px;
-	font-weight: bold;
 	width: 40px;
 	height: 40px;
-	position: absolute;
-	z-index: 2;
 	top: 50%;
+	font-size: 36px;
+	text-align: center;
+	text-decoration: none;
+	font-weight: bold;
+	line-height: 35px;
+	color: #ccc;
 	margin-top: -20px;
 	background-color: rgba(0,0,0,0.3);
-	color: #fff;
+	display: none;
 }
 .arrow:hover {
-	background-color: rgba(0,0,0,0.7);
+	background-color: rgba(0,0,0,0.6);
 }
 #container:hover .arrow {
 	display: block;
@@ -77,119 +69,19 @@ body {
 	left: 20px;
 }
 #next {
-	right:20px;
+	right: 20px;
 }
 </style>
-<script type="text/javascript">
-	window.onload = function () {
-		//获取元素
-		var container = document.getElementById('container');
-		var list = document.getElementById('list');
-		var btns = document.getElementById('button').getElementsByTagName('span');
-		var prev = document.getElementById('prev');
-		var next = document.getElementById('next');
-		var timer;
-		//关联按钮显示
-		var index = 1;
-		animated = false;
-		function showBtn() {
-			for(var i = 0; i < btns.length; i++){
-				if(btns[i].className == "on") {
-					btns[i].className = "";
-					break;
-				}
-			}
-			btns[index - 1].className = "on";
-		}
-		//绑定箭头事件
-		function animate(offset) {
-			animated = true;
-			var newLeft = parseInt(list.style.left) + offset;
-			var time = 300;//位移时间
-			var interval = 10;//位移间隔时间
-			var speed = offset/(time/interval);//每次的位移量
-
-			function go() {
-				if((speed < 0 && parseInt(list.style.left) > newLeft) || (speed > 0 && parseInt(list.style.left) < newLeft)) {
-				    list.style.left = parseInt(list.style.left) + speed +'px';
-				    setTimeout(go,interval); 
-				}else {
-					list.style.left = newLeft +"px";
-					if(newLeft > -400) {
-						list.style.left = "-1600px"
-					}
-					if(newLeft < -1600) {
-						list.style.left = "-400px";
-					}
-					animated = false;
-				}
-			}
-			go();
-		}
-		//自动播放
-		function play() {
-			timer = setInterval(function(){
-				next.onclick();
-			},3000)
-		}
-		function stop() {
-			clearInterval(timer);
-		}
-		next.onclick = function () {
-			if(animated) {
-				return;
-			}
-			if(index == 4) {
-				index = 1;
-			}else {
-				index += 1;
-			}
-			animate(-400);
-			showBtn();
-		}
-		prev.onclick = function () {
-			if(animated) {
-				return;
-			}
-			if(index == 1) {
-				index = 4;
-			}else {
-				index -= 1;
-			}
-			animate(400);
-			showBtn();
-		}
-		for(var i = 0; i < btns.length; i++) {
-			btns[i].onclick = function () {
-				if(this.className == "on") {
-					return;
-				}
-				var myIndex = parseInt(this.getAttribute('index'));
-				var offset = -400 * (myIndex - index);
-				if(!animated) {
-					animate(offset);
-				}
-				index = myIndex;
-				showBtn();
-			}
-		}
-		container.onmouseover = stop;
-		container.onmouseout = play;
-		play();
-
-	}
-</script>
-
 </head>
 <body>
 	<div id="container">
-		<div id="list" style="left: -400px;">
-			<img src="image/4" alt="">
-			<img src="image/cn3.jpg" alt="">
-			<img src="image/3.jpg" alt="">
-			<img src="image/cn4.jpg" align="">
-			<img src="image/4.jpg" alt="">
-			<img src="image/cn3.jpg" alt="">
+		<div id='list' style="left: -600px;">
+			<img src="image/3.jpg" >
+			<img src="image/cn3.jpg" >
+			<img src="image/4.jpg" >
+			<img src="image/cn4.jpg" >
+			<img src="image/3.jpg" >
+			<img src="image/cn3.jpg" >
 		</div>
 		<div id="button">
 			<span index="1" class="on"></span>
@@ -197,8 +89,101 @@ body {
 			<span index="3"></span>
 			<span index="4"></span>
 		</div>
-		<a href="javascript:;" id="prev" class="arrow">&lt;</a>
-		<a href="javascript:;" id="next" class="arrow">&gt;</a>
+		<a href="javascript:;" class="arrow" id="prev">&lt;</a>
+		<a href="javascript:;" class="arrow" id="next">&gt;</a>
 	</div>
+	<script type="text/javascript">
+		var container = document.getElementById('container'),
+		    list = document.getElementById('list'),
+		    btns = document.getElementById('button').getElementsByTagName('span'),
+		    prev = document.getElementById('prev'),
+		    next = document.getElementById('next'),
+		    index = 1,
+		    key = false,
+		    timer;
+
+		    function showBtn() {
+		    	for(var i = 0; i < btns.length; i ++) {
+		    		btns[i].className = '';
+		    	}
+		    	btns[index - 1].className = 'on';
+		    }
+
+            function animate(offset) {
+            	key = true;
+            	var newLeft = parseInt(list.style.left) + offset;
+            	var time = 600;
+            	var interval = 10;
+            	var speed = offset/(time/interval);
+
+            	function go() {
+            		if((speed < 0 && parseInt(list.style.left) > newLeft) ||
+            			(speed > 0 && parseInt(list.style.left) < newLeft)) {
+            			list.style.left = speed + parseInt(list.style.left) + 'px';
+            		    setTimeout(go,interval);
+            		} else {
+		            	list.style.left = newLeft + 'px';
+		            	if(newLeft > -600) {
+		            	    list.style.left = -2400 + 'px';
+		            	}else if(newLeft < -2400) {
+		            		list.style.left = -600 + 'px';
+		            	}
+		            	key = false;
+            		}
+            	}
+            	go();
+            }
+            function play() {
+				timer = setInterval(function() {
+					next.onclick();
+				},3000);
+            }
+            function stop() {
+            	clearInterval(timer);
+            }
+		    next.onclick = function () {
+		    	if(key) {
+		    		return;
+		    	}
+		    	if(index == 4) {
+		    		index = 1;
+		    	} else {
+		    		index += 1;
+		    	}
+                animate(-600);
+                showBtn();
+		    }
+		    prev.onclick = function () {
+		    	if(key) {
+		    		return;
+		    	}
+		    	if(index == 1) {
+		    		index = 4;
+		    	}else {
+		    		index -= 1;
+		    	}
+		    	animate(600);
+		    	showBtn();
+		    }
+		    for(var i = 0; i < btns.length; i ++) {
+		    	btns[i].onclick = function () {
+		    		if(this.className == 'on') { 
+			    		return;
+			    	}
+					var myIndex = parseInt(this.getAttribute('index'));
+					var offset = -600 * (myIndex - index);
+					animate(offset);
+					index = myIndex;	
+					showBtn();
+		    	}
+		    }
+
+		    container.onmouseover = stop;
+		    container.onmouseout = play;
+
+		    play();
+
+
+	</script>
 </body>
 </html>
