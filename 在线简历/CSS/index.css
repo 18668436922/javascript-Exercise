@@ -14,20 +14,20 @@
     background-color: #1fc4aa;
     position: relative;
     height: 100%;
-    z-index: 3;
+    /* z-index: 3; */
 }
 
 .secondPage {
     display: none;
     width: 100%;
-    z-index: 4;
+    /* z-index: 4; */
     position: absolute;
     right: 0;
     top: 0;
 }
 
 .lastPage {
-    z-index: 5;
+    /* z-index: 5; */
     display: none;
     position: absolute;
     left: 0;

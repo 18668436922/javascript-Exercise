@@ -1,10 +1,27 @@
 var scroll = document.getElementsByClassName("scroll")[0]; //ie不兼容，换成id会成功
 var panel = document.getElementsByClassName("Page"); //ie不兼容，换成id会成功
 var running = false;
+var inputC = document.getElementsByTagName("input");
 var clientH = window.innerHeight;
 scroll.style.height = clientH + "px";
 for (var i = 0; i < panel.length; i++) {
     panel[i].style.height = clientH + "px";
+    (function(i) {
+        inputC[i].onclick = function() {
+            if (inputC[i].checked == true) {
+                panel[i].style.display = 'block';
+                if (i < 2) {
+                    panel[i + 1].style.display = 'none';
+                }
+                if (i == 0) {
+                    panel[2].style.display = 'none';
+                }
+            }
+        }
+    })(i);
+    if (inputC[i].checked != true) {
+        panel[i].style.display = 'none';
+    }
 }
 /*下面是关于鼠标滚动*/
 var inputC = document.getElementsByTagName("input");
