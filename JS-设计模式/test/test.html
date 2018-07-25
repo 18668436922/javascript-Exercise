@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>工厂模式test</title>
+    <script src="js/test.js"></script>
+</head>
+
+<body>
+    <script>
+        var singletonAccepter = (function() {
+            var instance;
+
+            function SupposeClass(args) {
+                var args = args || {};
+                this.name = args.name || 'Monkey';
+                this.age = args.age || 24;
+                console.log('this is created!');
+            }
+            SupposeClass.prototype = {
+                constructor: SupposeClass,
+                displayInfo: function() {
+                    console.log('name: ' + this.name + ' age: ' + this.age);
+                }
+            }
+            return {
+                name: 'SupposeClass',
+                getInstance: function(args) {
+                    if (!instance) {
+                        instance = new SupposeClass(args);
+                    }
+                    return instance;
+                }
+            }
+        })();
+        singletonAccepter.getInstance();
+        singletonAccepter.getInstance();
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>复杂工厂模式。</title>
+    <script src="js/接口文件.js"></script>
+    <script src="js/继承类文件.js"></script>
+</head>
+
+<body>
+    <script>
+        var Pet = new Interface('Pet', ['eat', 'run', 'sing', 'register']);
+        //基类 分析后有共同的提出来作为基类。
+        function basePet() {
+            this.register = function() {
+                document.write('宠物登记......<br>');
+            }
+            this.eat = function() {
+                document.write('宠物吃饭......<br>');
+            }
+        }
+        //各个宠物类(实现类)  继承基类 + 接口实现。
+        function Dog() {
+            Dog.superClass.constructor.call(this); //继承父类
+            //实现接口
+            this.run = function() {
+                document.write("小狗跑......<br>")
+            }
+            this.sing = function() {
+                document.write("小狗唱歌......<br>")
+            }
+        }
+
+        function Cat() {
+            Cat.superClass.constructor.call(this); //继承父类
+            //实现接口
+            this.run = function() {
+                document.write("小猫跑......<br>")
+            }
+            this.sing = function() {
+                document.write("小猫唱歌......<br>")
+            }
+        }
+
+        function Pig() {
+            Pig.superClass.constructor.call(this); //继承父类
+            //实现接口
+            this.run = function() {
+                document.write("小猪跑......<br>")
+            }
+            this.sing = function() {
+                document.write("小猪唱歌......<br>")
+            }
+        }
+
+        function Bird() {
+            Bird.superClass.constructor.call(this); //继承父类
+            //实现接口
+            this.run = function() {
+                document.write("小鸟跑......<br>")
+            };
+            this.sing = function() {
+                document.write("小鸟唱歌......<br>")
+            }
+        }
+        //实现类与基类的继承实现，代码如下(调用extend()方法)
+        extend(Dog, basePet);
+        extend(Cat, basePet);
+        extend(Pig, basePet);
+        extend(Bird, basePet);
+        //将商店抽取出来，做成抽象类。代码如下：
+        //把核心商店取出来。
+        var petShop = function() {};
+        petShop.prototype = { //模拟抽象类 需要被子类覆盖。
+            getPet: function(kind) {
+                var pet = this.getpet(kind);
+                pet.eat();
+                pet.register();
+                return pet;
+            },
+            getpet: function(model) {
+                throw new Error('该类是抽象类，不能实例化');
+            }
+        };
+        //利用子类来满足各个商家的不同类型宠物店的实现，代码如下：
+        //利用子类来满足之前的需求(多态)
+        var oneShop = function() {};
+        extend(oneShop, petShop); //继承
+        //覆写方法。
+        oneShop.prototype.getpet = function(model) {
+            //宠物对象
+            var pet;
+            //宠物种类。
+            switch (model) {
+                case 'dog':
+                    pet = new Dog();
+                    break;
+                default:
+                    pet = new Bird();
+            }
+            //验证接口
+            Interface.ensureImplement(pet, Pet); //判断pet对象是否全部实现接口Pet的全部方法。
+            pet.eat();
+            pet.register();
+            return pet;
+        }
+        var twoShop = function() {};
+        extend(twoShop, petShop); //继承
+        //覆写方法。
+        twoShop.prototype.getpet = function(model) {
+                //宠物对象
+                var pet;
+                //宠物种类。
+                switch (model) {
+                    case 'pig':
+                        pet = new Pig();
+                        break;
+                    default:
+                        pet = new Bird();
+                }
+                //验证接口
+                Interface.ensureImplement(pet, Pet); //判断pet对象是否全部实现接口Pet的全部方法。
+                pet.eat();
+                pet.register();
+                return pet;
+            }
+            //使用，实质是子类对父类的实例化
+            //这里实现一个宠物店，另一个同理。
+        var jim = new oneShop();
+        var pig = jim.getpet('pig');
+        pig.run();
+        pig.sing();
+    </script>
+</body>
+
+</html>

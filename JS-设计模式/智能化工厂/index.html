@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>通过eval()实现智能化工厂</title>
+    <script src="js/接口文件.js"></script>
+    <script src="js/继承类文件.js"></script>
+</head>
+
+<body>
+    <script>
+        (function() {
+            //(1)接口调用
+            var Pet = new Interface('Pet', ['eat', 'run', 'sing', 'register']);
+            //(2)基类 分析后有共同的提出来作为基类。
+            function basePet() {
+                this.register = function() {
+                    document.write('宠物登记......<br>');
+                }
+                this.eat = function() {
+                    document.write('宠物吃饭......<br>');
+                }
+            };
+            //(3)实现类 继承基类 + 接口实现
+            function Dog() {
+                Dog.superClass.constructor.call(this); //继承父类
+                //实现接口。
+                this.run = function() {
+                    document.write('小狗跑......<br>');
+                }
+                this.sing = function() {
+                    document.write('小狗唱歌.......<br>');
+                }
+            }
+
+            function Cat() {
+                Cat.superClass.constructor.call(this); //继承父类
+                //实现接口。
+                this.run = function() {
+                    document.write('小猫跑......<br>');
+                }
+                this.sing = function() {
+                    document.write('小猫唱歌.......<br>');
+                }
+            }
+
+            function Pig() {
+                Pig.superClass.constructor.call(this); //继承父类
+                //实现接口。
+                this.run = function() {
+                    document.write('小猪跑......<br>');
+                }
+                this.sing = function() {
+                    document.write('小猪唱歌.......<br>');
+                }
+            }
+
+            function Bird() {
+                Bird.superClass.constructor.call(this); //继承父类
+                //实现接口。
+                this.run = function() {
+                    document.write('小鸟跑......<br>');
+                }
+                this.sing = function() {
+                    document.write('小鸟唱歌.......<br>');
+                }
+            }
+            //实现各种动物即成基类。
+            extend(Dog, basePet);
+            extend(Cat, basePet);
+            extend(Pig, basePet);
+            extend(Bird, basePet);
+            //(4)将商店核心抽取出来，做成一个抽象类。
+            var petShop = function() {};
+            petShop.prototype = { //模拟抽象类，需要被子类覆盖
+                getPet: function(kind) {
+                    var pet = this.getpet(kind);
+                    pet.eat();
+                    pet.register();
+                    return pet;
+                },
+                getpet: function(model) {
+                        throw new Error('该类是抽象类，不能实例化。')
+                    } //这里是做成抽象类，其中的getpet方法是通过子类实现的。
+            };
+            //(5)智能工厂 只负责生成宠物。
+            var PetFactory = {
+                sellPet: function(kind) {
+                    var pet;
+                    pet = eval('new ' + kind + '()');
+                    Interface.ensureImplement(pet, Pet); //判断pet对象是否能全部实现接口Pet里面的所有方法。
+                    return pet;
+                }
+            };
+            //(6) 商店1 (利用子类来满足各个商家的不同类型宠物店的实现（多态）)
+            var oneShop = function() {};
+            extend(oneShop, petShop); //继承
+            //覆写方法。
+            oneShop.prototype.getpet = function(model) {
+                //宠物对象。
+                var pet = null;
+                //宠物种类。
+                var pets = ['Dog', 'Cat', 'Bird']; //宠物货架。
+                for (v in pets) { //循环出索引。
+                    if (pets[v] == model) { //model是我们自己传递过来需要创建的宠物。
+                        pet = PetFactory.sellPet(model);
+                        Interface.ensureImplement(pet, Pet); //验证接口。判断是否实现全部方法。
+                        pet.register();
+                        pet.eat();
+                        break;
+                    }
+                }
+                return pet;
+            };
+            //商店 2。
+            var twoShop = function() {};
+            extend(twoShop, petShop); //继承
+            //覆写方法。
+            twoShop.prototype.getPet = function(model) {
+                    //宠物对象。
+                    var pet = null;
+                    //宠物种类。
+                    var pets = ['Pig']; //宠物货架。
+                    for (i in pets) { //循环出索引。
+                        if (pets[i] == model) { //model是我们自己传递过来需要创建的宠物。
+                            pet = PetFactory.sellPet(model);
+                            Interface.ensureImplement(pet, Pet); //验证接口。判断是否实现全部方法。
+                            pet.eat();
+                            pet.register();
+                            break;
+                        }
+                    }
+                    return pet;
+                }
+                //(7)宠物店卖宠物
+            var shop = new twoShop(); //创建商店
+            var pet = shop.getPet('Pig'); //从商店中得到宠物
+            pet.run(); //宠物的功能
+        })();
+    </script>
+</body>
+
+</html>
